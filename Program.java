@@ -9,39 +9,38 @@ public class Program {
         System.out.println("Enter the number of lines: ");
         int m = scanner.nextInt();
         int[][] array = new int[n][m];
-        int j, k, r, d;
+        int j, k, r, d; // Переменные 
 
         int flag = 0;
 
-        int s = n;
+        int minLengthInArray = m < n ? m : n;
 
         // Выполняем проверку введенного двумерного массива, если M < N, то воспользуемся M
-        if(m < n){
-            s = m;
-        }
+        // Это необходимо, для определния количества итераций
 
-        for(int i = 0; i < s - i; i++){
+
+        for(int i = 0; i < minLengthInArray - i; i++){
             // Элемент J заполняет массив, строку от границы слева, до границы справа   ------>
             for (j = i; j < array[i].length - i; j++) {
                 array[i][j] = flag;
                 flag++;
             }
-
+            j--;
             // Элемент K заполняет столбец сверху вниз, от вверхней правой границы, до нижней правой границы
             for (k = i + 1; k < array.length - i; k++){
-                array[k][j - 1] = flag;
+                array[k][j] = flag;
                 flag++;
             }
-
+            k--;
             // Элемент R заполняет строку снизу, от правой границы, до левой    <-------
-            for (r = j - 1; r >= i && i + 1 != s - i; r--){
-                array[k - 1][r] = flag;
+            for (r = j - 1; r >= i && i + 1 != minLengthInArray - i; r--){
+                array[k][r] = flag;
                 flag++;
             }
-
+            r++;
             // Элемент D заполняет столбец снизу вверх, от нижней левой границы, до вверхей левой границы
-            for (d = k - 1; d > i && i + 1 != s - i; d--) {
-                array[d][r + 1] = flag;
+            for (d = k - 1; d > i && i + 1 != minLengthInArray - i; d--) {
+                array[d][r] = flag;
                 flag++;
             }
         }
