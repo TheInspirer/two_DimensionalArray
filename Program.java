@@ -25,22 +25,19 @@ public class Program {
                 array[i][j] = flag;
                 flag++;
             }
-            j--;
             // Элемент K заполняет столбец сверху вниз, от вверхней правой границы, до нижней правой границы
             for (k = i + 1; k < array.length - i; k++){
-                array[k][j] = flag;
+                array[k][j - 1] = flag;
                 flag++;
             }
-            k--;
             // Элемент R заполняет строку снизу, от правой границы, до левой    <-------
             for (r = j - 1; r >= i && i + 1 != minLengthInArray - i; r--){
-                array[k][r] = flag;
+                array[k - 1][r] = flag;
                 flag++;
             }
-            r++;
             // Элемент D заполняет столбец снизу вверх, от нижней левой границы, до вверхей левой границы
             for (d = k - 1; d > i && i + 1 != minLengthInArray - i; d--) {
-                array[d][r] = flag;
+                array[d][r + 1] = flag;
                 flag++;
             }
         }
